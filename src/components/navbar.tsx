@@ -8,8 +8,8 @@ import { Logo } from "./logo";
 const Navbar = () => {
   const navItems = ["All", "Deals", "Contact"];
   return (
-    <nav className="flex justify-between px-8 py-4 items-center">
-      <div className="hidden max-[860px]:block border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer text-black">
+    <nav className="flex justify-between px-8 py-4 items-center text-[#6b6762]">
+      <div className="hidden max-[860px]:block border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer">
         <Bars3Icon className="w-4 h-4" />
       </div>
       <div className="flex items-center gap-8">
@@ -25,11 +25,14 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="relative w-96 max-[860px]:hidden">
-          <Input className="w-full" placeholder="Search for products..." />
-          <MagnifyingGlassIcon className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
+          <Input
+            className="w-full border-[1px] border-[#6b67621e] shadow-none placeholder:text-[#524e4aca]"
+            placeholder="Search for products..."
+          />
+          <MagnifyingGlassIcon className="absolute top-1/2 right-3 transform -translate-y-1/2" />
         </div>
       </div>
-      <div className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer text-black">
+      <div className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer">
         <ShoppingCartIcon className="w-4 h-4" />
       </div>
     </nav>

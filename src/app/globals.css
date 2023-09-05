@@ -95,3 +95,16 @@ html {
 #root {
   background: #eeeae6;
 }
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dedad6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b6762bd;
+  border-radius: 8px;
+}
