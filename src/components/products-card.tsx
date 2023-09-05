@@ -14,7 +14,12 @@ export const MainProduct = ({
 }) => {
   return (
     <div className="rounded-lg border-[1px] border-[#6b676223] hover:border-[#53B18D] cursor-pointer relative">
-      <Image className={classes} src={imageSrc} alt="product_1" />
+      <Image
+        className={classes}
+        src={imageSrc}
+        alt="product_1"
+        placeholder="blur"
+      />
       <Tags type="main" name={productName} price={productPrice} />
     </div>
   );
@@ -35,6 +40,7 @@ export const ProductCard = ({
         className="group-hover:scale-105 transition-all duration-200 ease-in-out"
         src={imageSrc}
         alt="product_1"
+        placeholder="blur"
       />
       <Tags type="side" name={productName} price={productPrice} />
     </div>
