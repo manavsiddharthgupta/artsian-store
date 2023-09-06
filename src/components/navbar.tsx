@@ -1,37 +1,89 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import { Logo } from "./logo";
 import { navItems } from "@/lib/store";
+import { Dialog } from "@headlessui/react";
+import { Search } from "./search";
+import { Cross1Icon } from "@radix-ui/react-icons";
+import { Drawer } from "./Drawer";
+import { Cart } from "./cart";
 
 const Navbar = () => {
   const [searchCategory, setCategory] = useState("");
+  const [isOpenNavbar, setIsOpenNavbar] = useState(false);
+  const [isOpenCart, setIsOpenCart] = useState(false);
   const router = useRouter();
+
+  const onNavigate = (link: string) => {
+    router.push(link);
+    closeNavDrawer();
+  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(e.target.value);
   };
 
-  const onHitEnterKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      if (searchCategory === "") {
-        router.push("/search");
-        return;
-      }
-      router.push("/search?q=" + searchCategory);
-    }
-  };
+  const closeNavDrawer = useCallback(() => {
+    setIsOpenNavbar(false);
+  }, []);
+
+  function openNavDrawer() {
+    setIsOpenNavbar(true);
+  }
+
+  const closeCartDrawer = useCallback(() => {
+    setIsOpenCart(false);
+  }, []);
+
+  function openCartDrawer() {
+    setIsOpenCart(true);
+  }
 
   return (
     <nav className="flex justify-between px-8 py-4 items-center text-[#6b6762]">
-      <div className="hidden max-[860px]:block border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer">
+      <button
+        onClick={openNavDrawer}
+        className="hidden max-[860px]:block border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
+      >
         <Bars3Icon className="w-4 h-4" />
-      </div>
+      </button>
+      <Drawer isOpen={isOpenNavbar} closeNavDrawer={closeNavDrawer}>
+        <Dialog.Panel className="w-full absolute top-0 left-0 h-full transform bg-[#eeeae6] text-[#6b6762] p-6 transition-all ">
+          <button
+            onClick={closeNavDrawer}
+            className="w-fit h-fit border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer shadow-sm"
+          >
+            <Cross1Icon className="w-4 h-4" />
+          </button>
+          <div className="mt-4">
+            <Search
+              searchCategory={searchCategory}
+              handleSearch={handleSearch}
+              isDrawerOpen={isOpenNavbar}
+              closeDrawer={closeNavDrawer}
+            />
+            {
+              <ul className="flex flex-col gap-4 mt-4">
+                {navItems.map((item) => (
+                  <li
+                    onClick={() => {
+                      onNavigate(item.href);
+                    }}
+                    key={item.name}
+                    className="hover:text-black cursor-pointer transition-colors duration-100 ease-in-out font-medium"
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            }
+          </div>
+        </Dialog.Panel>
+      </Drawer>
       <div className="flex items-center gap-8">
         <Logo />
         <ul className="flex gap-4 text-[15px] max-[860px]:hidden">
@@ -43,20 +95,17 @@ const Navbar = () => {
             </Link>
           ))}
         </ul>
-        <div className="relative w-96 max-[860px]:hidden">
-          <Input
-            className="w-full border-[1px] border-[#6b67621e] shadow-none placeholder:text-[#524e4aca]"
-            placeholder="Search for products..."
-            value={searchCategory}
-            onChange={handleSearch}
-            onKeyDown={onHitEnterKey}
-          />
-          <MagnifyingGlassIcon className="absolute top-1/2 right-3 transform -translate-y-1/2" />
+        <div className="w-96 max-[860px]:hidden">
+          <Search searchCategory={searchCategory} handleSearch={handleSearch} />
         </div>
       </div>
-      <div className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer">
+      <button
+        onClick={openCartDrawer}
+        className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
+      >
         <ShoppingCartIcon className="w-4 h-4" />
-      </div>
+      </button>
+      <Cart isOpenCart={isOpenCart} closeCartDrawer={closeCartDrawer} />
     </nav>
   );
 };

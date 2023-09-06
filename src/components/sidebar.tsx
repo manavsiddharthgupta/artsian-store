@@ -8,7 +8,7 @@ export const SideBar = () => {
   const pathname = usePathname();
 
   return (
-    <ul className="flex flex-col gap-[6px] text-sm w-full max-w-[120px]">
+    <ul className="flex flex-col gap-[6px] text-sm w-full max-w-[120px] max-sm:hidden">
       <li className="text-xs text-[#53B18D]">Collections</li>
       {sideLinks.map((link) => {
         const isActive = pathname === link.href;
