@@ -1,6 +1,3 @@
-import { Card } from "@/components/card";
-import Footer from "@/components/footer";
-import { SideBar } from "@/components/sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,18 +5,10 @@ export const metadata: Metadata = {
   description: "E-Commerece for Tech Enthusiasts",
 };
 
-export default function SearchLayout({
+export default function CategoryLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <Card>
-      <div className="flex min-h-screen">
-        <SideBar />
-        {children}
-      </div>
-      <Footer />
-    </Card>
-  );
+  return <>{children}</>;
 }

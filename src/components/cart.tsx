@@ -12,7 +12,7 @@ export const Cart = ({
 }) => {
   return (
     <Drawer from="right" isOpen={isOpenCart} closeNavDrawer={closeCartDrawer}>
-      <Dialog.Panel className="w-96 max-sm:w-full absolute top-0 right-0 h-full transform bg-[#eeeae6] text-[#6b6762] border-l-2 border-[#6b6762] p-6 transition-all">
+      <Dialog.Panel className="w-96 max-sm:w-full absolute top-0 right-0 h-full transform bg-[#eeeae6] text-[#6b6762] border-l-[1px] border-[#6b6762] p-6 transition-all">
         <div className="flex justify-between items-center">
           <h1 className="text-lg font-semibold">My Cart</h1>
           <div

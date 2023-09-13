@@ -1,14 +1,20 @@
 import { FollowUs } from "@/components/follow-us";
 import { Logo } from "@/components/logo";
 import { Separator } from "@/components/ui/separator";
+import { extrasInfo, footerLinks_1 } from "@/lib/store";
+import Link from "next/link";
+
+const FooterLink = ({ name, href }: { name: string; href: string }) => {
+  return (
+    <Link href={href}>
+      <li className="hover:text-black text-sm hover:underline underline-offset-2 cursor-pointer transition-colors duration-100 ease-in-out mb-2">
+        {name}
+      </li>
+    </Link>
+  );
+};
 
 const Footer = () => {
-  const footerLinks_1 = ["All", "Home", "Deals"];
-  const footerLinks_2 = [
-    "Terms & Conditions",
-    "Shopping & Return Policy",
-    "Privacy Policy",
-  ];
   return (
     <footer className="mt-8">
       <div className="flex items-start py-2 px-4 gap-14 max-sm:flex-col max-sm:gap-8 transition-all duration-200 ease-in-out">
@@ -17,22 +23,16 @@ const Footer = () => {
           <FollowUs />
           <ul>
             {footerLinks_1.map((item) => (
-              <li
-                key={item}
-                className="hover:text-black text-sm hover:underline underline-offset-2 cursor-pointer transition-colors duration-100 ease-in-out mb-2"
-              >
-                {item}
-              </li>
+              <FooterLink key={item.name} name={item.name} href={item.href} />
             ))}
           </ul>
           <ul>
-            {footerLinks_2.map((item) => (
-              <li
-                key={item}
-                className="hover:text-black text-sm hover:underline underline-offset-2 cursor-pointer transition-colors duration-100 ease-in-out mb-2"
-              >
-                {item}
-              </li>
+            {extrasInfo.map((item) => (
+              <FooterLink
+                key={item.name}
+                name={item.name}
+                href={`/${item.href}`}
+              />
             ))}
           </ul>
         </div>
