@@ -83,7 +83,7 @@ const Product = ({
 
   return (
     <Card>
-      <div className="max-lg:flex-col flex gap-12 py-8 px-4">
+      <div className="max-lg:flex-col flex gap-12 py-8 px-4 max-lg:px-0">
         <div className="w-[60%] max-lg:w-full">
           <Image src={prod} alt="product_1" placeholder="blur" />
         </div>

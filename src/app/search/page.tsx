@@ -14,7 +14,7 @@ const Search = () => {
     <Card>
       <div className="flex min-h-screen">
         <SideBar />
-        <div className="w-[calc(100%-120px)]">
+        <div className="w-[calc(100%-120px)] max-sm:w-full">
           {searchfor && <p>you are searching for - {searchfor}</p>}
           {!searchfor && <p>All Products</p>}
         </div>
