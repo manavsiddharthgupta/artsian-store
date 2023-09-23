@@ -31,7 +31,7 @@ export const Drawer = ({
           <div className="min-h-full p-4">
             <Transition.Child
               as={Fragment}
-              enter="transition-all ease-in-out duration-300"
+              enter="transition-all ease-in-out duration-400"
               enterFrom={
                 from === "right" ? "translate-x-[100%]" : "translate-x-[-100%]"
               }

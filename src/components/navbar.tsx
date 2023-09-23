@@ -11,12 +11,19 @@ import { Search } from "./search";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { Drawer } from "./Drawer";
 import { Cart } from "./cart";
+import { Badge } from "./ui/badge";
+import { useCart } from "@/lib/cart";
 
 const Navbar = () => {
   const [searchCategory, setCategory] = useState("");
   const [isOpenNavbar, setIsOpenNavbar] = useState(false);
   const [isOpenCart, setIsOpenCart] = useState(false);
   const router = useRouter();
+  const cart = useCart();
+
+  const totalItemInCart = cart.items.reduce((acc, item) => {
+    return acc + item.quantity;
+  }, 0);
 
   const onNavigate = (link: string) => {
     router.push(link);
@@ -99,12 +106,20 @@ const Navbar = () => {
           <Search searchCategory={searchCategory} handleSearch={handleSearch} />
         </div>
       </div>
-      <button
-        onClick={openCartDrawer}
-        className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
-      >
-        <ShoppingCartIcon className="w-4 h-4" />
-      </button>
+      <div className="relative">
+        <button
+          onClick={openCartDrawer}
+          className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
+        >
+          <ShoppingCartIcon className="w-4 h-4" />
+        </button>
+        <Badge
+          className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 px-1 bg-[#53B18D] text-white text-[10px] hover:bg-[#53B18D]"
+          variant="secondary"
+        >
+          {totalItemInCart}
+        </Badge>
+      </div>
       <Cart isOpenCart={isOpenCart} closeCartDrawer={closeCartDrawer} />
     </nav>
   );

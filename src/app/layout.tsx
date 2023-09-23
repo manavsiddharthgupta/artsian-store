@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/navbar";
+import { CartContextWrap } from "@/lib/CartContextWrap";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[#eeeae6]`}>
-        <Navbar />
-        {children}
+        <CartContextWrap>
+          <Navbar />
+          {children}
+        </CartContextWrap>
       </body>
     </html>
   );
