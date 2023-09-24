@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useSearchParams, useRouter } from "next/navigation";
 import Footer from "@/components/footer";
 import { useCart } from "@/lib/cart";
+import { useToast } from "@/components/ui/use-toast";
 
 const Product = ({
   params,
@@ -25,6 +26,7 @@ const Product = ({
 
   const router = useRouter();
   const cart = useCart();
+  const { toast } = useToast();
 
   const addToCart = () => {
     cart.addItem({
@@ -34,6 +36,11 @@ const Product = ({
       color: selectedColor,
       price: 32.0,
       quantity: 1,
+    });
+    toast({
+      title: "Added to Cart",
+      description: `artemis circle t-shirt, size: ${selectedSize}, color: ${selectedColor}`,
+      duration: 2000,
     });
   };
 

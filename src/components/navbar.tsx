@@ -13,11 +13,11 @@ import { Drawer } from "./Drawer";
 import { Cart } from "./cart";
 import { Badge } from "./ui/badge";
 import { useCart } from "@/lib/cart";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [searchCategory, setCategory] = useState("");
   const [isOpenNavbar, setIsOpenNavbar] = useState(false);
-  const [isOpenCart, setIsOpenCart] = useState(false);
   const router = useRouter();
   const cart = useCart();
 
@@ -40,14 +40,6 @@ const Navbar = () => {
 
   function openNavDrawer() {
     setIsOpenNavbar(true);
-  }
-
-  const closeCartDrawer = useCallback(() => {
-    setIsOpenCart(false);
-  }, []);
-
-  function openCartDrawer() {
-    setIsOpenCart(true);
   }
 
   return (
@@ -106,21 +98,25 @@ const Navbar = () => {
           <Search searchCategory={searchCategory} handleSearch={handleSearch} />
         </div>
       </div>
-      <div className="relative">
-        <button
-          onClick={openCartDrawer}
-          className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
-        >
-          <ShoppingCartIcon className="w-4 h-4" />
-        </button>
-        <Badge
-          className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 px-1 bg-[#53B18D] text-white text-[10px] hover:bg-[#53B18D]"
-          variant="secondary"
-        >
-          {totalItemInCart}
-        </Badge>
-      </div>
-      <Cart isOpenCart={isOpenCart} closeCartDrawer={closeCartDrawer} />
+      <Sheet>
+        <div className="relative">
+          <SheetTrigger asChild>
+            <button
+              // onClick={openCartDrawer}
+              className="border-[1px] solid border-black/30 rounded-md p-3 cursor-pointer"
+            >
+              <ShoppingCartIcon className="w-4 h-4" />
+            </button>
+          </SheetTrigger>
+          <Badge
+            className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 px-1 bg-[#53B18D] text-white text-[10px] hover:bg-[#53B18D]"
+            variant="secondary"
+          >
+            {totalItemInCart}
+          </Badge>
+        </div>
+        <Cart />
+      </Sheet>
     </nav>
   );
 };
