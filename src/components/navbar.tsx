@@ -9,7 +9,7 @@ import { navItems } from "@/lib/store";
 import { Dialog } from "@headlessui/react";
 import { Search } from "./search";
 import { Cross1Icon } from "@radix-ui/react-icons";
-import { Drawer } from "./drawer";
+import { Drawer } from "./slider";
 import { Cart } from "./cart";
 import { Badge } from "./ui/badge";
 import { useCart } from "@/lib/cart";
