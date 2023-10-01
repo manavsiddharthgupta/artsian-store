@@ -17,6 +17,15 @@ const Search = () => {
         <div className="w-[calc(100%-120px)] max-sm:w-full">
           {searchfor && <p>you are searching for - {searchfor}</p>}
           {!searchfor && <p>All Products</p>}
+          {searchfor && (
+            <p className="mt-1">
+              There are no products that match{" "}
+              <span className="font-semibold">"{searchfor}"</span>
+            </p>
+          )}
+          {!searchfor && (
+            <p className="mt-1">There are no products available right now :(</p>
+          )}
         </div>
       </div>
       <Footer />

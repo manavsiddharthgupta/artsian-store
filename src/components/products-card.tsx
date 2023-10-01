@@ -1,5 +1,7 @@
+"use client";
 import Image, { StaticImageData } from "next/image";
 import { Tags } from "./tag";
+import { useToast } from "./ui/use-toast";
 
 const classes = "hover:scale-105 transition-all duration-200 ease-in-out";
 
@@ -34,8 +36,20 @@ export const ProductCard = ({
   productName: string;
   productPrice: number;
 }) => {
+  const { toast } = useToast();
+
   return (
-    <div className="rounded-lg border-[1px] border-[#6b676223] hover:border-[#53B18D] aspect-[1/1] cursor-pointer flex items-center group relative">
+    <div
+      onClick={() => {
+        toast({
+          title: "This product is not available",
+          description: "This is a demo site.",
+          variant: "destructive",
+          duration: 2000,
+        });
+      }}
+      className="rounded-lg border-[1px] border-[#6b676223] hover:border-[#53B18D] aspect-[1/1] cursor-pointer flex items-center group relative"
+    >
       <Image
         className="group-hover:scale-105 transition-all duration-200 ease-in-out"
         src={imageSrc}

@@ -25,5 +25,12 @@ export default function Category({ params }: Props) {
     console.log("not found");
     notFound();
   }
-  return <p>{params.category}</p>;
+  return (
+    <div>
+      <p>{params.category}</p>
+      <p className="mt-1">
+        There are no products available right now in this category :(
+      </p>
+    </div>
+  );
 }

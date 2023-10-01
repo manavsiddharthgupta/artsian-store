@@ -28,7 +28,8 @@ const Page = ({ params }: Props) => {
   return (
     <Card>
       <div className="min-h-screen">
-        <h1>{params.page}</h1>
+        <h1 className="text-lg font-medium">{params.page}</h1>
+        <p className="text-sm font-medium mt-1">This is a demo site</p>
       </div>
       <Footer />
     </Card>

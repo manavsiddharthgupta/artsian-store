@@ -41,6 +41,7 @@ const Product = ({
       title: "Added to Cart",
       description: `artemis circle t-shirt, size: ${selectedSize}, color: ${selectedColor}`,
       duration: 2000,
+      className: "bg-[#53B18D] text-white border-[#53B18D]",
     });
   };
 
